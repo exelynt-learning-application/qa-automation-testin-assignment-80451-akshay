@@ -1,0 +1,146 @@
+# Testing Levels and the Test Pyramid
+
+## 1. Four Levels of Software Testing
+
+Software testing is performed at different levels to verify that the software works correctly. The four main levels are:
+
+### 1. Unit Testing
+
+Unit testing is the testing of the smallest individual parts of a software application, such as methods, functions, or classes.
+
+**Example:**  
+If an application has a `calculateTotal()` method, unit testing verifies whether the method correctly calculates the total amount.
+
+**Usually performed by:** Developers
+
+---
+
+### 2. Integration Testing
+
+Integration testing checks whether two or more modules or components work correctly when they are connected together.
+
+**Example:**  
+In an e-commerce application, integration testing can verify whether the **Order Module** correctly communicates with the **Payment Module** after an order is placed.
+
+**Purpose:** To identify problems in communication and data flow between modules.
+
+---
+
+### 3. System Testing
+
+System testing tests the complete application as a whole. It verifies whether all features work together according to the requirements.
+
+**Example:**  
+For an online shopping application, system testing can verify the complete process:
+
+**Login → Select Product → Add to Cart → Make Payment → Receive Order Confirmation**
+
+**Usually performed by:** QA/Testers
+
+---
+
+### 4. Acceptance Testing
+
+Acceptance testing verifies whether the software meets the business requirements and is acceptable to the customer or end user.
+
+**Example:**  
+A customer checks whether an online banking application allows them to:
+
+- Login
+- Check account balance
+- Transfer money
+- Download statements
+- Logout
+
+If the application satisfies the business requirements, it can be accepted for release.
+
+**Usually performed by:** Customer, business users, or QA team
+
+---
+
+## 2. Black Box Testing vs White Box Testing
+
+| Black Box Testing | White Box Testing |
+|---|---|
+| Tester tests the application without knowing the internal code. | Tester has knowledge of the internal code and logic. |
+| Focuses on inputs and expected outputs. | Focuses on code, conditions, branches, and logic. |
+| No programming knowledge is necessarily required. | Programming knowledge is generally required. |
+| Mainly used for functional testing. | Mainly used for code-level and structural testing. |
+| Example: Testing login with valid and invalid credentials. | Example: Testing all conditions inside the login method. |
+
+### Black Box Testing Example
+
+A tester enters:
+
+**Username:** valid user  
+**Password:** valid password
+
+The tester verifies whether the user is successfully logged in. The tester does not need to know how the login code is implemented.
+
+### White Box Testing Example
+
+A developer checks the login code and verifies whether all `if`, `else`, conditions, and code paths work correctly.
+
+---
+
+## 3. Test Automation Pyramid
+
+The Test Automation Pyramid is a model that explains how automated tests should be distributed at different levels.
+
+```text
+              /\
+             /  \
+            / UI \
+           /Tests \
+          /--------\
+         / Service  \
+        /   Tests    \
+       /--------------\
+      /   Unit Tests   \
+     /__________________\
+```
+
+### Levels of the Test Automation Pyramid
+
+#### 1. Unit Tests – Largest Layer
+
+Unit tests should form the largest part of the automation suite.
+
+- Fast execution
+- Easy to maintain
+- Test individual functions or methods
+- Usually written by developers
+
+**Example:** Testing a Java method that calculates the total price.
+
+#### 2. Service/API Tests – Middle Layer
+
+API or service tests verify the business logic and communication between services without depending on the user interface.
+
+**Example:** Testing a Login API to verify that valid credentials return a successful response.
+
+#### 3. UI Tests – Smallest Layer
+
+UI tests verify the application through the user interface.
+
+**Example:** Using Selenium to open a login page, enter username and password, click Login, and verify the dashboard.
+
+UI tests are generally slower and more expensive to maintain than unit and API tests.
+
+### Why Use the Test Pyramid?
+
+The test pyramid recommends having:
+
+- **Many Unit Tests**
+- **A moderate number of API/Service Tests**
+- **Fewer UI Tests**
+
+This approach makes automation faster, more stable, easier to maintain, and less expensive.
+
+---
+
+## Conclusion
+
+Software testing is divided into four main levels: **Unit Testing, Integration Testing, System Testing, and Acceptance Testing**. Black box testing focuses on application behavior without looking at the internal code, while white box testing focuses on the internal code and logic.
+
+The **Test Automation Pyramid** recommends using more unit tests, a moderate number of API/service tests, and fewer UI tests. Following this approach helps create a reliable and maintainable automation test suite.
