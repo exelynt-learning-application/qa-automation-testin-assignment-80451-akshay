@@ -1,0 +1,207 @@
+# API Testing with Postman
+
+## 1. Objective
+
+The objective of this assignment is to perform API testing using Postman. Different HTTP methods such as **GET, POST, PUT, and DELETE** are tested, and the responses are validated using status codes, response body, response time, and assertions.
+
+## 2. Public Demo API
+
+For this assignment, **JSONPlaceholder** can be used as the public demo API.
+
+Base URL:
+
+`https://jsonplaceholder.typicode.com`
+
+---
+
+## 3. GET Request
+
+**Method:** GET
+
+**Endpoint:**
+
+`/posts/1`
+
+### Expected Result
+
+- Status Code: **200 OK**
+- Response should contain post details.
+- Response time should be within an acceptable limit.
+
+### Example Response
+
+```json
+{
+  "userId": 1,
+  "id": 1,
+  "title": "sample title",
+  "body": "sample body"
+}
+```
+
+---
+
+## 4. POST Request
+
+**Method:** POST
+
+**Endpoint:**
+
+`/posts`
+
+### Request Body
+
+```json
+{
+  "title": "Postman Testing",
+  "body": "Testing POST API using Postman",
+  "userId": 1
+}
+```
+
+### Expected Result
+
+- Status Code: **201 Created**
+- Response should contain the submitted data.
+- A new ID should be returned.
+
+---
+
+## 5. PUT Request
+
+**Method:** PUT
+
+**Endpoint:**
+
+`/posts/1`
+
+### Request Body
+
+```json
+{
+  "id": 1,
+  "title": "Updated Post",
+  "body": "Updated using PUT request",
+  "userId": 1
+}
+```
+
+### Expected Result
+
+- Status Code: **200 OK**
+- Updated information should be present in the response.
+
+---
+
+## 6. DELETE Request
+
+**Method:** DELETE
+
+**Endpoint:**
+
+`/posts/1`
+
+### Expected Result
+
+- Status Code: **200 OK**
+- The request should be successfully processed.
+
+---
+
+# 7. Postman Test Scripts / Assertions
+
+At least five assertions are required.
+
+### Assertion 1 – Status Code
+
+```javascript
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+```
+
+### Assertion 2 – Response Time
+
+```javascript
+pm.test("Response time is less than 2000ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(2000);
+});
+```
+
+### Assertion 3 – Response Body
+
+```javascript
+pm.test("Response body is not empty", function () {
+    pm.expect(pm.response.text()).to.not.be.empty;
+});
+```
+
+### Assertion 4 – Response Contains ID
+
+```javascript
+pm.test("Response contains ID", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property("id");
+});
+```
+
+### Assertion 5 – Content Type
+
+```javascript
+pm.test("Response is JSON", function () {
+    pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
+});
+```
+
+---
+
+# 8. Collection Organization
+
+Create a Postman collection named:
+
+**API Testing with Postman**
+
+Organize the requests as follows:
+
+```text
+API Testing with Postman
+│
+├── GET - Get Post
+├── POST - Create Post
+├── PUT - Update Post
+└── DELETE - Delete Post
+```
+
+The collection should contain all four HTTP requests and their respective test scripts.
+
+---
+
+# 9. Test Results
+
+After executing the requests in Postman:
+
+- GET request should pass.
+- POST request should pass.
+- PUT request should pass.
+- DELETE request should pass.
+- All five assertions should pass.
+- Response status codes should be validated.
+- Response time should be validated.
+- Response body should be verified.
+
+Take screenshots of the **Postman request, response, and test results** and include them in the submission.
+
+---
+
+# 10. Submission
+
+Submit the following files:
+
+1. **Exported Postman Collection (.json)**
+2. **Screenshots of GET, POST, PUT, and DELETE results**
+3. **Screenshots showing passing assertions**
+4. **Documentation explaining the API testing performed**
+
+## Conclusion
+
+API testing with Postman helps verify whether APIs work correctly and return the expected responses. By testing GET, POST, PUT, and DELETE requests and using assertions, we can validate the API's functionality, response data, status codes, and performance.
